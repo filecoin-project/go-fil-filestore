@@ -17,7 +17,18 @@ func randBytes(n int) []byte {
 }
 
 const baseDir = "_test/a/b/c/d"
-const existingFile = "existing.go"
+const existingFile = "existing.txt"
+
+func init() {
+	os.MkdirAll(baseDir, 0755)
+	filename := fmt.Sprintf("%s%c%s", baseDir, os.PathSeparator, existingFile)
+	file, err := os.Create(filename)
+	if err != nil {
+		return
+	}
+	defer file.Close()
+	file.Write(randBytes(64))
+}
 
 func Test_SizeFails(t *testing.T) {
 	store, err := filestore.NewLocalFileStore(baseDir)
