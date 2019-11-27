@@ -8,7 +8,7 @@ type Path string
 // File is a wrapper around an os file
 type File interface {
 	Path() Path
-	Size() uint64
+	Size() int64
 
 	io.Closer
 	io.Reader
@@ -23,7 +23,7 @@ type File interface {
 // from the FileStore, and deletes them once they have been sealed in a sector
 type FileStore interface {
 	Open(p Path) (File, error)
-	Create(p Path) (File, e error)
+	Create(p Path) (File, error)
 	Store(p Path, f File) error
 	Delete(p Path) error
 
