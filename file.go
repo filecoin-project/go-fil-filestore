@@ -29,20 +29,3 @@ func (f fd) Size() int64 {
     return info.Size()
 }
 
-func (f fd) Close() error {
-    return f.File.Close()
-}
-
-func (f fd) Read(p []byte) (n int, err error) {
-    return f.File.Read(p)
-}
-
-func (f fd) Write(p []byte) (n int, err error) {
-    return f.File.Write(p)
-}
-
-func (f fd) Seek(offset int64, whence int) (int64, error) {
-    return f.File.Seek(offset, whence)
-}
-
-
